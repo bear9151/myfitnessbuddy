@@ -13,3 +13,4 @@
 
 Route::get('/', 'MealsController@index');
 Route::get('/meals', 'MealsController@meals');
+Route::get('/meals/create', 'MealsController@create');
