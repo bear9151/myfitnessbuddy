@@ -11,6 +11,5 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'MealsController@index');
+Route::get('/meals', 'MealsController@meals');
