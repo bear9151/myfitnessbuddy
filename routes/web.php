@@ -11,6 +11,6 @@
 |
 */
 
-Route::get('/', 'MealsController@index');
-Route::get('/meals', 'MealsController@meals');
-Route::get('/meals/create', 'MealsController@create');
+Route::get('/', 'PagesController@index');
+
+Route::resource('meals', 'MealsController');

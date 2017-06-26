@@ -3,9 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Meal;
 
-class MealsController extends Controller
+class PagesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +13,8 @@ class MealsController extends Controller
      */
     public function index()
     {
-        $meals = Meal::all();
-        return view('meals.index', compact ('meals'));
+        $name = 'Test Name';
+        return view('pages.index', compact ('name'));
     }
 
     /**
@@ -25,7 +24,7 @@ class MealsController extends Controller
      */
     public function create()
     {
-        return view('meals.create');
+        //
     }
 
     /**
@@ -47,8 +46,7 @@ class MealsController extends Controller
      */
     public function show($id)
     {
-        $meal = Meal::find($id);
-        return view('meals.show', compact ('meal'));
+        //
     }
 
     /**
