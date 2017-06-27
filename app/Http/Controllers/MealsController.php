@@ -68,7 +68,9 @@ class MealsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $meal = Meal::find($id);
+        return view('meals.edit', compact ('meal'));
+
     }
 
     /**
@@ -80,7 +82,16 @@ class MealsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required'
+        ]);
+
+        // Update Meal
+        $meal = Meal::find($id);
+        $meal->name = $request->input('name');
+        $meal->save();
+
+        return redirect('/meals')->with('success', 'Meal Name Changed');
     }
 
     /**
@@ -91,6 +102,9 @@ class MealsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $meal = Meal::find($id);
+        $meal->delete();
+
+        return redirect('/meals')->with('success', 'Meal Deleted');
     }
 }
