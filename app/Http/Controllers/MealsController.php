@@ -14,7 +14,7 @@ class MealsController extends Controller
      */
     public function index()
     {
-        $meals = Meal::all();
+        $meals = Meal::orderby('created_at','desc')->paginate(10);
         return view('meals.index', compact ('meals'));
     }
 
@@ -36,7 +36,16 @@ class MealsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required'
+        ]);
+
+        // Create Meal
+        $meal = new Meal;
+        $meal->name = $request->input('name');
+        $meal->save();
+
+        return redirect('/meals')->with('success', 'Meal Created');
     }
 
     /**

@@ -9,12 +9,12 @@
             <li class="list-group-item">
                 <a href="/meals/{{$meal->id}}">{{$meal->name}}</a>
                 <span class="pull-right">
-                    test
                     {{$meal->created_at}}
                 </span>
             </li>
         @endforeach
         </ul>
+        {{$meals->links()}}
     @else
         <h3>No Meals found.</h3>
     @endif
