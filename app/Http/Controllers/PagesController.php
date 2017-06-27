@@ -13,8 +13,7 @@ class PagesController extends Controller
      */
     public function index()
     {
-        $name = 'Test Name';
-        return view('pages.index', compact ('name'));
+        return view('pages.index');
     }
 
     /**

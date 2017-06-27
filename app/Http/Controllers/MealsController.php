@@ -43,6 +43,7 @@ class MealsController extends Controller
         // Create Meal
         $meal = new Meal;
         $meal->name = $request->input('name');
+        $meal->user_id = auth()->user()->id;
         $meal->save();
 
         return redirect('/meals')->with('success', 'Meal Created');

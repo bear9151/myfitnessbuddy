@@ -14,3 +14,6 @@
 Route::get('/', 'PagesController@index');
 
 Route::resource('meals', 'MealsController');
+Auth::routes();
+
+Route::get('/dashboard', 'DashboardController@index');
