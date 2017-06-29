@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="panel panel-success">
+    <div class="panel panel-primary">
         <div class="panel-heading">
             <h3 class="panel-title">Welcome back, {{ Auth::user()->name }}.</h3>
         </div>
@@ -11,7 +11,7 @@
                 <ul class="list-group">
                     @foreach($meals as $meal)
                         <li class="list-group-item">
-                            {{$meal->name}}
+                            <a href="/meals/{{$meal->id}}">{{$meal->name}}</a>
                             <a class="pull-right" href="/meals/{{$meal->id}}/edit">Change Meal Name</a>
                         </li>
                     @endforeach

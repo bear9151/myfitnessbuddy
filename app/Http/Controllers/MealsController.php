@@ -4,9 +4,20 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Meal;
+use App\User;
 
 class MealsController extends Controller
 {
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +25,8 @@ class MealsController extends Controller
      */
     public function index()
     {
-        $meals = Meal::orderby('created_at','desc')->paginate(10);
+        $user_id = auth()->user()->id;
+        $meals = Meal::orderby('created_at','desc')->where('user_id', $user_id)->paginate(10);
         return view('meals.index', compact ('meals'));
     }
 
@@ -58,6 +70,12 @@ class MealsController extends Controller
     public function show($id)
     {
         $meal = Meal::find($id);
+
+        // Check for correct user
+        if(auth()->user()->id !==$meal->user_id){
+            return redirect('/meals')->with('error', "Unauthorized Page");
+        }
+
         return view('meals.show', compact ('meal'));
     }
 
@@ -70,6 +88,12 @@ class MealsController extends Controller
     public function edit($id)
     {
         $meal = Meal::find($id);
+
+        // Check for correct user
+        if(auth()->user()->id !==$meal->user_id){
+            return redirect('/meals')->with('error', "Unauthorized Page");
+        }
+
         return view('meals.edit', compact ('meal'));
 
     }
@@ -89,6 +113,12 @@ class MealsController extends Controller
 
         // Update Meal
         $meal = Meal::find($id);
+
+        // Check for correct user
+        if(auth()->user()->id !==$meal->user_id){
+            return redirect('/meals')->with('error', "Unauthorized Page");
+        }
+
         $meal->name = $request->input('name');
         $meal->save();
 
@@ -104,6 +134,12 @@ class MealsController extends Controller
     public function destroy($id)
     {
         $meal = Meal::find($id);
+
+        // Check for correct user
+        if(auth()->user()->id !==$meal->user_id){
+            return redirect('/meals')->with('error', "Unauthorized Page");
+        }
+
         $meal->delete();
 
         return redirect('/meals')->with('success', 'Meal Deleted');
