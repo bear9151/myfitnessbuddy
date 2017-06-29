@@ -16,5 +16,14 @@
     <span class="meal-data label label-pill label-default">{{$meal->carb}}g Carbohydrates</span>
     <span class="meal-data label label-pill label-default">{{$meal->fat}}g Fat</span>
     <hr>
+    <h3>Foods</h3>
+    <ul class="list-group">
+        <li class="list-group-item">Food Name Test
+            <span class="pull-right">test : test : test</span>
+        </li>
+    </ul>
+    <hr>
+
+    @include('inc.foodform')
 
 @endsection
