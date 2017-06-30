@@ -12,7 +12,7 @@
                     @foreach($meals as $meal)
                         <li class="list-group-item">
                             <a href="/meals/{{$meal->id}}">{{$meal->name}}</a>
-                            <a class="pull-right" href="/meals/{{$meal->id}}/edit">Change Meal Name</a>
+                            <span class="pull-right">{{$meal->created_at}}</span>
                         </li>
                     @endforeach
                 </ul>

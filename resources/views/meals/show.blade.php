@@ -18,9 +18,14 @@
     <hr>
     <h3>Foods</h3>
     <ul class="list-group">
-        <li class="list-group-item">Food Name Test
-            <span class="pull-right">test : test : test</span>
-        </li>
+        @foreach($foods as $food)
+            <li class="list-group-item">
+                {{$food->foodname}}
+                <span class="pull-right">
+                    {{$food->protein}} : {{$food->carb}} : {{$food->fat}}
+                </span>
+            </li>
+        @endforeach
     </ul>
     <hr>
 

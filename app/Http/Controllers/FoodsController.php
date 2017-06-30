@@ -35,6 +35,7 @@ class FoodsController extends Controller
      */
     public function store(Request $request)
     {
+
         $this->validate($request, [
             'foodname' => 'required'
         ]);
@@ -42,8 +43,13 @@ class FoodsController extends Controller
         // Create Food
         $food = new Food;
         $food->foodname = $request->input('foodname');
-//        $meal->user_id = auth()->user()->id;
+        $food->protein = $request->input('protein');
+        $food->carb = $request->input('carb');
+        $food->fat = $request->input('fat');
+        $food->meal_id = $request->input('meal_id');
         $food->save();
+
+        dd($request);
 
         return redirect('/meals')->with('success', 'Food Added');
     }

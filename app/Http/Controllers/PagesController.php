@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\User;
+use App\Meal;
 
 
 class PagesController extends Controller
@@ -19,8 +19,8 @@ class PagesController extends Controller
         // If Logged in
         if(Auth::check()){
             $user_id = auth()->user()->id;
-            $user = User::find($user_id);
-            return view('dashboard')->with('meals', $user->meals);
+            $meals = Meal::orderby('created_at','desc')->where('user_id', $user_id)->whereDate('created_at', '=', date('Y-m-d'))->get();
+            return view('dashboard', compact ('meals'));
         }
 
         return view('pages.index');

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Meal;
-use App\User;
+use App\Food;
 
 class MealsController extends Controller
 {
@@ -75,8 +75,10 @@ class MealsController extends Controller
         if(auth()->user()->id !==$meal->user_id){
             return redirect('/meals')->with('error', "Unauthorized Page");
         }
+        $foods = Food::get();
+//        dd($id);
+        return view('meals.show', compact ('meal', 'foods'));
 
-        return view('meals.show', compact ('meal'));
     }
 
     /**

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\Meal;
 
 class DashboardController extends Controller
 {
@@ -25,7 +26,7 @@ class DashboardController extends Controller
     public function index()
     {
         $user_id = auth()->user()->id;
-        $user = User::find($user_id);
-        return view('dashboard')->with('meals', $user->meals);
+        $meals = Meal::orderby('created_at','desc')->where('user_id', $user_id)->whereDate('created_at', '=', date('Y-m-d'))->get();
+        return view('dashboard', compact ('meals'));
     }
 }

@@ -19,4 +19,8 @@ class Meal extends Model
         return $this ->belongsTo('App\User');
     }
 
+    public function foods() {
+        return $this->hasMany('App\Food');
+    }
+
 }
