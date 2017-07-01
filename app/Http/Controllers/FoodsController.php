@@ -39,7 +39,7 @@ class FoodsController extends Controller
         $this->validate($request, [
             'foodname' => 'required'
         ]);
-
+//        dd($request);
         // Create Food
         $food = new Food;
         $food->foodname = $request->input('foodname');
@@ -49,7 +49,7 @@ class FoodsController extends Controller
         $food->meal_id = $request->input('meal_id');
         $food->save();
 
-        dd($request);
+
 
         return redirect('/meals')->with('success', 'Food Added');
     }

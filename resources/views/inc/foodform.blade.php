@@ -15,5 +15,8 @@
     {{Form::label('fat', 'Fat')}}
     {{Form::text('fat', '', ['class' => 'form-control', 'placeholder' => 'Fat/g'])}}
 </div>
+<div class="form-group">
+    <input name="meal_id" type="hidden" value="{{$meal->id}}">
+</div>
 {{Form::submit('Submit', ['class'=>'btn btn-success'])}}
 {!! Form::close() !!}
